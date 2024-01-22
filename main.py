@@ -80,7 +80,7 @@ twitch_miner = TwitchChannelPointsMiner(
       
             )
         )
-    )
+
 )
 
 # You can customize the settings for each streamer. If not settings were provided, the script would use the streamer_settings from TwitchChannelPointsMiner.
