@@ -77,8 +77,23 @@ twitch_miner = TwitchChannelPointsMiner(
         claim_moments=True,                     # If set to True, https://help.twitch.tv/s/article/moments will be claimed when available
         watch_streak=True,                      # If a streamer go online change the priority of streamers array and catch the watch screak. Issue #11
         chat=ChatPresence.ALWAYS,               # Join irc chat to increase watch-time [ALWAYS, NEVER, ONLINE, OFFLINE]
-      
-      ),  
+        bet=BetSettings(
+            strategy=Strategy.SMART,            # Choose you strategy!
+            percentage=5,                       # Place the x% of your channel points
+            percentage_gap=20,                  # Gap difference between outcomesA and outcomesB (for SMART strategy)
+            max_points=50000,                   # If the x percentage of your channel points is gt bet_max_points set this value
+            stealth_mode=True,                  # If the calculated amount of channel points is GT the highest bet, place the highest value minus 1-2 points Issue #33
+            delay_mode=DelayMode.FROM_END,      # When placing a bet, we will wait until `delay` seconds before the end of the timer
+            delay=0,
+            minimum_points=90000000000000,               # Place the bet only if we have at least 900k points. Issue #113
+            filter_condition=FilterCondition(
+                by=OutcomeKeys.TOTAL_USERS,     # Where apply the filter. Allowed [PERCENTAGE_USERS, ODDS_PERCENTAGE, ODDS, TOP_POINTS, TOTAL_USERS, TOTAL_POINTS]
+                where=Condition.LTE,            # 'by' must be [GT, LT, GTE, LTE] than value
+                value=800
+            )
+        )
+    )
+)
 
 # You can customize the settings for each streamer. If not settings were provided, the script would use the streamer_settings from TwitchChannelPointsMiner.
 # If no streamer_settings are provided in TwitchChannelPointsMiner the script will use default settings.
@@ -102,4 +117,3 @@ twitch_miner.mine(
     followers=True,                    # Automatic download the list of your followers
     followers_order=FollowersOrder.ASC  # Sort the followers list by follow date. ASC or DESC
 )
-
