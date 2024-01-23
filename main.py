@@ -79,8 +79,8 @@ twitch_miner = TwitchChannelPointsMiner(
         chat=ChatPresence.ONLINE,               # Join irc chat to increase watch-time [ALWAYS, NEVER, ONLINE, OFFLINE]
       
         )
-    )
-)
+    
+
 
 # You can customize the settings for each streamer. If not settings were provided, the script would use the streamer_settings from TwitchChannelPointsMiner.
 # If no streamer_settings are provided in TwitchChannelPointsMiner the script will use default settings.
