@@ -8,7 +8,7 @@ from TwitchChannelPointsMiner.classes.Telegram import Telegram
 from TwitchChannelPointsMiner.classes.Matrix import Matrix
 from TwitchChannelPointsMiner.classes.Pushover import Pushover
 from TwitchChannelPointsMiner.classes.Settings import Priority, Events, FollowersOrder
-from TwitchChannelPointsMiner.classes.entities.Bet import Strategy,BetSettings, Condition, OutcomeKeys, FilterCondition, DelayMode
+from TwitchChannelPointsMiner.classes.entities.Bet import  Condition, OutcomeKeys, FilterCondition, DelayMode
 from TwitchChannelPointsMiner.classes.entities.Streamer import Streamer, StreamerSettings
 import os
 
@@ -77,20 +77,7 @@ twitch_miner = TwitchChannelPointsMiner(
         claim_moments=True,                     # If set to True, https://help.twitch.tv/s/article/moments will be claimed when available
         watch_streak=True,                      # If a streamer go online change the priority of streamers array and catch the watch screak. Issue #11
         chat=ChatPresence.ONLINE,               # Join irc chat to increase watch-time [ALWAYS, NEVER, ONLINE, OFFLINE]
-        bet=BetSettings(
-            strategy=Strategy.SMART,            # Choose you strategy!
-            percentage=0,                       # Place the x% of your channel points
-            percentage_gap=00,                  # Gap difference between outcomesA and outcomesB (for SMART strategy)
-            max_points=00000,                   # If the x percentage of your channel points is gt bet_max_points set this value
-            stealth_mode=False,                  # If the calculated amount of channel points is GT the highest bet, place the highest value minus 1-2 points Issue #33
-            delay_mode=DelayMode.FROM_END,      # When placing a bet, we will wait until `delay` seconds before the end of the timer
-            delay=0,
-            minimum_points=900000,               # Place the bet only if we have at least 20k points. Issue #113
-            filter_condition=FilterCondition(
-                by=OutcomeKeys.TOTAL_USERS,     # Where apply the filter. Allowed [PERCENTAGE_USERS, ODDS_PERCENTAGE, ODDS, TOP_POINTS, TOTAL_USERS, TOTAL_POINTS]
-                where=Condition.LTE,            # 'by' must be [GT, LT, GTE, LTE] than value
-                value=0
-            )
+      
         )
     )
 )
